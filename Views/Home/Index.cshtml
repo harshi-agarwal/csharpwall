@@ -1,0 +1,50 @@
+<head> 
+    <title>theWall</title>
+</head>
+
+<h1>theWall </h1>
+<div>   
+<form action="method" method="POST">
+  FirstName:  <input type="text" name="f_name"><br>
+  LastName:  <input type="text" name="l_name"><br>
+  Email:  <input type="text" name="email"><br>
+  Password:  <input type="password" name="password"><br>
+  Confirm Password:  <input type="password" name="cpassword"><br>
+ <input type="submit" value="Register">
+ </div>
+ <br>
+ <br>
+ <div>  
+</form>
+<form action="login" method="POST">
+  Email:  <input type="text" name="email"><br>
+  Password:  <input type="password" name="password"><br>
+  <input type="submit" value="login">
+</form>
+<form action="logout">
+    <input type="submit" value="Logout">
+</form>
+</div>
+<div>
+<p>@ViewBag.thing</p>
+<p>@ViewBag.thing1</p>
+<p>@ViewBag.thing2</p>
+</div>
+
+<div>
+   
+    @{
+        if(ViewBag.errors!=null){
+
+        
+        foreach(var error in ViewBag.errors)
+            {
+                //If there are any errors for a field...
+                if(@error.Errors.Count > 0)
+                {
+                    // We show the first error for that field
+                    <p>@error.Errors[0].ErrorMessage</p>
+                }
+            }
+    }}
+</div>

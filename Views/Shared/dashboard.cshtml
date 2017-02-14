@@ -1,0 +1,51 @@
+<h1>Welcome @ViewBag.user</h1>
+<div style="display:inline-block;">   
+<form action="logout">
+    <input type="submit" value="Logout">
+</form>
+</div>
+<h3>Post a message</h3>
+<form action="addmessages" method="POST">
+message:<textarea name="msg" cols="30" rows="10"></textarea>
+<input type="submit" Value="Post a message">
+</form>
+
+@{
+    
+    foreach(var message in ViewBag.messages){
+       <p> Name: @message.user.f_name  </p> 
+       <p> Message: @message.msg</p>
+      
+       foreach(var comment in ViewBag.comments){
+        @if(@message.id==@comment.message_id)
+        {
+        <p> Name: @comment.user.f_name  </p> 
+        <p> Comment: @comment.context</p>
+        }
+    }
+     <h3>Post a comment</h3>
+       <form action="addcomments/@message.id" method="post">
+           <textarea name="context" id="" cols="30" rows="5"></textarea>
+           <input type="submit" value="post a comment">
+       </form>
+       
+    
+}
+}
+<div>
+   
+    @{
+        if(ViewBag.errors!=null){
+
+        
+        foreach(var error in ViewBag.errors)
+            {
+                //If there are any errors for a field...
+                if(@error.Errors.Count > 0)
+                {
+                    // We show the first error for that field
+                    <p>@error.Errors[0].ErrorMessage</p>
+                }
+            }
+    }}
+</div>
